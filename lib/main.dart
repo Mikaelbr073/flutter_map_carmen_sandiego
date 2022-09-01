@@ -36,20 +36,26 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     points = <LatLng>[];
-    points.add(LatLng(-8.89074, -36.4966));
-    points.add(LatLng(37.090240, -95.712891));
-    points.add(LatLng(-38.416097, -63.616672));
-    points.add(LatLng(-8.783195, 34.508523));
 
     markers = <Marker>[];
-    for (int i = 0; i < points.length; i++) {
-      markers.add(Marker(
-        width: 80.0,
-        height: 80.0,
-        point: points.elementAt(i),
-        builder: (ctx) => Icon(Icons.pin_drop, color: colors[i]),
-      ));
-    }
+  }
+
+  void atulizaMapa() {
+    setState(() {
+      points.add(LatLng(-8.89074, -36.4966));
+      points.add(LatLng(37.090240, -95.712891));
+      points.add(LatLng(-38.416097, -63.616672));
+      points.add(LatLng(-8.783195, 34.508523));
+
+      for (int i = 0; i < points.length; i++) {
+        markers.add(Marker(
+          width: 80.0,
+          height: 80.0,
+          point: points.elementAt(i),
+          builder: (ctx) => Icon(Icons.pin_drop, color: colors[i]),
+        ));
+      }
+    });
   }
 
   @override
@@ -109,7 +115,9 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 children: [
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      atulizaMapa();
+                    },
                     child: Text("Where's CS?"),
                     style: ElevatedButton.styleFrom(
                         minimumSize: const Size.fromHeight(40)),
